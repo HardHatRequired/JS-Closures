@@ -5,23 +5,16 @@ var outer = function(){
   }
 };
 
-
 //////////////////PROBLEM 1////////////////////
 
 // Above you're given a function that returns another function which has a closure over the name variable.
 // Invoke outer saving the return value into another variable called 'inner'.
-
-// Code Here
-
-
 //Once you do that, invoke inner.
-
-  //Code Here
-
-
+// Code Here
+var inner = outer();
+inner();
 
 //////////////////PROBLEM 2////////////////////
-
 
 var callFriend = function(){
   var friend = 'Jake';
@@ -31,51 +24,64 @@ var callFriend = function(){
   return callF;
 };
 
-
 // Above you're given a callFriend function that returns another function.
 // Create a makeCall function that when invoked logs  'Calling Jake at 435-215-9248' in your console.
 
   //Code Here
-
-
-
-
-
-
+var makeCall = callFriend();
+console.log(makeCall("435-215-9248"));
 
 //////////////////PROBLEM 3////////////////////
+//EXAMPLE FROM ONLINE ON CLOSURES
+var addTo = function (passed){ //could be anonymous or any name
+    var add = function (inner){
+       return passed / inner;
+    };
+    return add;
+};
 
+var addThree = new addTo(3); //passed (outer) EQ1
+var addFour = new addTo(10); //passed (outer) EQ2
 
+console.log(addThree(1)); //inner (inner) EQ1
+console.log(addFour(2)); //inner (inner) EQ2
 
-/*
-  Write a function called makeCounter that makes the following code work properly.
-*/
+//EQ1 returns 3
+//EQ2 returns 5
+
+//END OF EXAMPLE
+
+// Write a function called makeCounter that makes the following code work properly.
 
 //Code Here
+var makeCounter = function() {
+  var counter = 0;
+  var add = function () {
+    return counter += 1;
+  }
+  return add;
+};
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
-
-
+var count = makeCounter();
+count(); // 1
+count(); // 2
+count(); // 3
+count(); // 4
 
 //////////////////PROBLEM 4////////////////////
 
-
-// Inside the function called counterFactory
-// return two functions that implement up/down counter.
-// The first function is called inc, this function is responsible for incrementing the value once
-// The second function is called dec, this function is responsible for decrementing the value by one
-// You will need to use the module pattern to achieve this.
+// Inside the function called counterFactory return two functions that implement up/down counter. The first function is called inc, this function is responsible for incrementing the value once. The second function is called dec, this function is responsible for decrementing the value by one. You will need to use the module pattern to achieve this.
 
 function counterFactory(value) {
-
+  var counter = 0;
   // Code here.
-
-
+  var inc = function () {
+    return counter += 1;
+  }
+  var dec = function () {
+    return counter -= 1;
+  }
   return {
   }
 }
@@ -83,11 +89,7 @@ function counterFactory(value) {
 
 counter = counterFactory(10);
 
-
-
-
 //////////////////PROBLEM 5////////////////////
-
 
 // Inside the motivation function create another function called message that will return 'You're doing awesome, keep it up firstname lastname.'
 
@@ -104,8 +106,6 @@ counter = counterFactory(10);
   }
 
   motivation('Billy', 'Bob'); // 'Your doing awesome keep it up Billy Bob
-
-
 
 //////////////////PROBLEM 6////////////////////
 
@@ -134,12 +134,9 @@ counter = counterFactory(10);
 //Uncomment this after you create your public method
 //   module.publicMethod();
 
-
-
 //////////////////PROBLEM 7////////////////////
 // Here we have a for loop that will iterate as long as i is less than or equal to 5. What we need to do is console.log(i)
 // So that it logs ( 0 then 1 then 2 then 3, etc). Run this code in your console to see what the output is.
-
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
@@ -154,10 +151,6 @@ function timeOutCounter() {
 }
 timeOutCounter();
   // To make this code work you will need to create a new scope for every iteration.
-
-
-
-
 
 //////////////////PROBLEM 8////////////////////
 
